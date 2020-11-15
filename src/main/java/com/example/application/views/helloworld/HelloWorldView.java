@@ -58,10 +58,14 @@ public class HelloWorldView<callSearchService> extends HorizontalLayout {
                         textOverview.getElement().setAttribute("colspan", Integer.toString(4));
                         TextField textFirstAirDate = new TextField("First air date");
                         textFirstAirDate.setReadOnly(true);
-                        textFirstAirDate.setValue(tvSeries.getFirstAirDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
+                        if (tvSeries.getFirstAirDate() != null) {
+                            textFirstAirDate.setValue(tvSeries.getFirstAirDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
+                        }
                         TextField textLastAirDate = new TextField("Last air date");
                         textLastAirDate.setReadOnly(true);
-                        textLastAirDate.setValue(tvSeries.getLastAirDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
+                        if (tvSeries.getLastAirDate() != null) {
+                            textLastAirDate.setValue(tvSeries.getLastAirDate().format(DateTimeFormatter.ofPattern("dd LLLL yyyy")));
+                        }
                         TextField numberOfSeasons = new TextField("Number of seasons");
                         numberOfSeasons.setReadOnly(true);
                         numberOfSeasons.setValue(String.valueOf(tvSeries.getNumberOfSeasons()));

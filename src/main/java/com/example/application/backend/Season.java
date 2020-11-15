@@ -53,7 +53,9 @@ public class Season {
     }
 
     public String getAirDateFormatted(String format) {
-        return airDate.format(DateTimeFormatter.ofPattern(format));
+        if (airDate != null)
+            return airDate.format(DateTimeFormatter.ofPattern(format));
+        return null;
     }
 
     public short getEpisodeCount() {
@@ -74,6 +76,6 @@ public class Season {
 
     @Override
     public String toString() {
-        return "id: " + id + " - number: " + seasonNumber + " - air date: " + airDate.toString();
+        return "id: " + id + " - number: " + seasonNumber + " - air date: " + (airDate != null ? airDate.toString() : null);
     }
 }
