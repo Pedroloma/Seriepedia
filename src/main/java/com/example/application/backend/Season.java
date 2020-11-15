@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,9 @@ public class Season {
 
     @JsonProperty(value = "air_date")
     private LocalDate airDate;
+
+    @JsonProperty(value = "episode_count")
+    private short episodeCount;
 
     private List<Episode> episodes;
 
@@ -48,6 +52,18 @@ public class Season {
         this.airDate = airDate;
     }
 
+    public String getAirDateFormatted(String format) {
+        return airDate.format(DateTimeFormatter.ofPattern(format));
+    }
+
+    public short getEpisodeCount() {
+        return episodeCount;
+    }
+
+    public void setEpisodeCount(short episodeCount) {
+        this.episodeCount = episodeCount;
+    }
+
     public List<Episode> getEpisodes() {
         return episodes;
     }
@@ -58,7 +74,6 @@ public class Season {
 
     @Override
     public String toString() {
-        return "id: " + id + " - " + "air date: " + airDate.toString();
+        return "id: " + id + " - number: " + seasonNumber + " - air date: " + airDate.toString();
     }
-
 }
