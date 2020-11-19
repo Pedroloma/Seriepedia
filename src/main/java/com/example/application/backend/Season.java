@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +19,9 @@ public class Season {
 
     @JsonProperty(value = "episode_count")
     private short episodeCount;
+
+    @JsonProperty(value = "poster_path")
+    private String posterPath;
 
     private List<Episode> episodes;
 
@@ -52,14 +54,16 @@ public class Season {
         this.airDate = airDate;
     }
 
-    public String getAirDateFormatted(String format) {
-        if (airDate != null)
-            return airDate.format(DateTimeFormatter.ofPattern(format));
-        return null;
-    }
-
     public short getEpisodeCount() {
         return episodeCount;
+    }
+
+    public String getPosterPath() {
+        return posterPath;
+    }
+
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
     }
 
     public void setEpisodeCount(short episodeCount) {
