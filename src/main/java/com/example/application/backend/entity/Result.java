@@ -1,4 +1,4 @@
-package com.example.application.backend;
+package com.example.application.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
