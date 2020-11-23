@@ -25,8 +25,6 @@ import com.vaadin.flow.data.renderer.LocalDateRenderer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -39,9 +37,7 @@ import java.time.format.FormatStyle;
 @RouteAlias(value = "", layout = MainView.class)
 public class searchView extends HorizontalLayout {
 
-    private static final Logger log = LoggerFactory.getLogger(searchView.class);
     private final TextField name;
-    private final Button search;
     @Autowired
     SearchService searchService;
     @Autowired
@@ -53,17 +49,18 @@ public class searchView extends HorizontalLayout {
 
     public searchView() {
         setId("hello-world-view");
-        name = new TextField("Enter text for search");
+        name = new TextField();
+        name.setPlaceholder("Enter text to search");
         name.setClearButtonVisible(true);
-        search = new Button("Search");
-        search.addClickShortcut(Key.ENTER);
-        setVerticalComponentAlignment(Alignment.END, name, search);
+        Button search1 = new Button("Search");
+        search1.addClickShortcut(Key.ENTER);
+        setVerticalComponentAlignment(Alignment.END, name, search1);
 
-        add(name, search);
+        add(name, search1);
 
-        search.addClickListener(e -> {
+        search1.addClickListener(e -> {
             if (name.getValue().isEmpty())
-                Notification.show("Enter text for search!!!");
+                Notification.show("Enter text to search!!!");
             else {
 
                 Search search = searchService.callSearchService(name.getValue());
